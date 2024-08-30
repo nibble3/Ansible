@@ -1,1 +1,55 @@
-t
+- name: Adding user ansible and ssh-key
+  hosts: MKFilials
+#  hosts: MLBY-B10-R01
+#  hosts: NN
+#  hosts: Samara
+#  hosts: MLBYDC
+#  hosts: MLBYB9Minsk
+#  hosts: Petrozavodsk
+#  hosts: Sergievsk
+#  diff: yes 
+  vars:
+#  remote_user: aleksandr.teletnev
+  remote_user: alex
+
+  tasks:
+
+    - name: Set new password for user ansible
+      routeros_command:
+       commands: /user set [find where name=ansible] password="i(F^om&#G&QTr0xM!jh" group=full
+
+    - name: Adding user ansible
+      routeros_command:
+       commands: /user add name=ansible password="i(F^om&#G&QTr0xM!jh" group=full
+
+    - name: Delete old ssh-key from FILE
+      routeros_command:
+       commands:
+       - "/file remove [find where name=mkcs-m1-ans01_rsa_key.pub]"
+
+    - name: Copy Public key to host
+      net_put:
+        src: /root/.ssh/mkcs-m1-ans01_rsa_key.pub
+        protocol: sftp
+
+    - name: Delete all ssh-keys
+      routeros_command:
+       commands:
+       - "/user ssh-keys remove [find user!=all]"
+
+    - name: Import ssh-key to user ansible
+      routeros_command:
+       commands:
+       - "/user ssh-keys import user=ansible public-key-file=mkcs-m1-ans01_rsa_key.pub"
+#    - name: Delete other users
+#      routeros_command:
+#       commands: 
+#       - "/user remove [find where disabled=yes]"
+
+#      register: output    
+#    - name: PRINT OUT THE OUTPUT VARIABLE
+#      debug:
+#       var: output
+#       var: output.stdout_lines[0][5]
+
+#   - debug: msg="FIND!"
