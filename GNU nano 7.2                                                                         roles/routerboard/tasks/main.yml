@@ -1,2 +1,0 @@
-- name: Upgrade BIOS firmware.
-  command: bash -c "cat /etc/ansible/roles/routerboard/files/script.rsc | ssh -T {{ansible_user}}@{{inventory_hostname}} -p {{ansible_ssh_port}} -i {{ssh_key_path}}"
