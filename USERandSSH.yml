@@ -16,11 +16,11 @@
 
     - name: Set new password for user ansible
       routeros_command:
-       commands: /user set [find where name=ansible] password="i(F^om&#G&QTr0xM!jh" group=full
+       commands: /user set [find where name=ansible] password="PASSWORD" group=full
 
     - name: Adding user ansible
       routeros_command:
-       commands: /user add name=ansible password="i(F^om&#G&QTr0xM!jh" group=full
+       commands: /user add name=ansible password="PASSWORD" group=full
 
     - name: Delete old ssh-key from FILE
       routeros_command:
