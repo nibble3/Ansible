@@ -1,0 +1,28 @@
+- name: Execute command to all hosts
+  hosts: MKFilials
+  hosts: RBR-M1-FW01
+  hosts: MLKG-BK-FW01
+  hosts: TF-M2-FW01
+#  gather_facts: no
+#  connection: local
+  roles:
+#    - dhcp
+#    - dns
+#    - fw-address-list
+#    - fw-filter-input
+    - fw-filter-forward
+#    - firmware
+#    - logging
+#    - mangle
+#    - nat
+#    - radius
+#    - raw
+#    - services
+#    - scripts
+#    - snmp
+#    - user
+#    - users
+  vars:
+    ansible_user: ansible
+    ansible_ssh_port: 22
+    ssh_key_path: /etc/ssh/mkcs-m1-ans01_rsa_key
