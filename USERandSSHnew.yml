@@ -23,7 +23,7 @@
 #       - "/user ssh-keys remove [find user!=all]" 
 #    - name: Adding user ansible
 #      routeros_command:
-#       commands: /user add name=ansible password="i(F^om&#G&QTr0xM!jh" group=full
+#       commands: /user add name=ansible password="PASSWORD" group=full
 
 #    - name: Delete old ssh-key from FILE, Delete all ssh-keys from users
 #      routeros_command:
