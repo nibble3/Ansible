@@ -1,9 +1,14 @@
-# Ansible
 Сгенерировать новый ключ
-#ssh-keygen -C mkcs-m1-ans01_rsa_key
+#ssh-keygen -C mkcs-m1-ans01_rsa_key -t rsa -f mkcs-m1-ans01_rsa_key 
+###ключ защищать паролем не нужно 
+Enter passphrase (empty for no passphrase): 
+Enter same passphrase again:
 скопировать Pub ключ на микротик и привязать его в пользователю
 Проверить работу ключа
 ssh -T ansible@10.33.207.1 -p 22 -i /etc/ansible/mkcs-m1-ans01_rsa_key -vvv
 Обязательно прописать в конфиге использовать ssh rsa
 sudo nano /etc/ssh/ssh_config
 PubkeyAcceptedKeyTypes +ssh-rsa
+
+###ansible.netcommon.net_put module – Copy a file from Ansible Controller to a network device
+###https://docs.ansible.com/ansible/latest/collections/ansible/netcommon/net_put_module.html
