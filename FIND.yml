@@ -1,0 +1,49 @@
+- name: Find
+#  hosts: MKFilials
+#  hosts: Mahachkala
+#  hosts: Nalchik
+#  hosts: Ufa
+  hosts: Izberbash
+#  diff: yes 
+#  remote_user: ansible
+#  remote_user: aleksandr.teletnev
+
+  tasks:
+
+#    - name: Find firewall filter and delete
+#      routeros_command:
+#       commands: /user ssh-keys print
+#      register: output
+
+#    - name: Set global variable
+#      routeros_command:
+#       commands: /global mkip
+
+#    - name: Set global variable IP GW with mask
+#      routeros_command:
+#       commands: /global mkipmask [/ip address get [find interface="bridge-MK"] address]
+
+#    - name: Set IP GW without mask
+#      routeros_command:
+#       commands: /set mkip [:pick $mkipmask 0 [:find $mkipmask "/"]]
+
+    - name: Find DHCP server DNS-servers
+      routeros_command:
+       commands: /put [ip dhcp-server network get [find where domain=mk.local] dns-server ] 
+#       commands: /put [ip dhcp-server network get [find gateway=$mkip] dns-server ]
+      register: output
+
+#    - name: Find firewall filter and delete
+#      routeros_command:
+#       commands: 
+#       - "/interface bridge set [find where name=bridge-MK] comment=defconf"
+#       - "/interface bridge set [find where name=bridge-local] name=bridge-MK"
+
+
+
+    - name: PRINT OUT THE OUTPUT VARIABLE
+      debug:
+#       var: output
+#For DHCP-server DNS find
+       var: output.stdout_lines[0][5]
+#   - debug: msg="FIND!"
