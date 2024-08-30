@@ -4,3 +4,6 @@
 скопировать Pub ключ на микротик и привязать его в пользователю
 Проверить работу ключа
 ssh -T ansible@10.33.207.1 -p 22 -i /etc/ansible/mkcs-m1-ans01_rsa_key -vvv
+Обязательно прописать в конфиге использовать ssh rsa
+sudo nano /etc/ssh/ssh_config
+PubkeyAcceptedKeyTypes +ssh-rsa
